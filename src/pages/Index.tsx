@@ -23,8 +23,8 @@ interface Message {
 
 // Datos de ejemplo para la maqueta
 const mockTickets: Record<string, TicketData> = {
-  "2025-001234": {
-    numero: "2025-001234",
+  "123456": {
+    numero: "123456",
     asunto: "Ampliación de Red Cloacal - Zona Sur",
     estado: "revision",
     fechaCreacion: "10/01/2026",
@@ -84,30 +84,7 @@ const initialMessages: Message[] = [
     id: "1",
     role: "assistant",
     content:
-      "Hola, soy el asistente institucional. Para consultar el estado de una solicitud, ingresá el número de ticket.",
-  },
-  {
-    id: "2",
-    role: "user",
-    content: "2025-001234",
-  },
-  {
-    id: "3",
-    role: "assistant",
-    content: "Encontré la siguiente información para el ticket consultado:",
-    ticket: mockTickets["2025-001234"],
-  },
-  {
-    id: "4",
-    role: "user",
-    content: "99999999",
-  },
-  {
-    id: "5",
-    role: "assistant",
-    content:
-      "No se encontró una solicitud con el número de ticket ingresado. Verificá el identificador o realizá una nueva consulta.",
-    isError: true,
+      "Hola, soy el asistente institucional. Para consultar el estado de una solicitud, ingresá el número de ticket. Por ejemplo: 123456",
   },
 ];
 
