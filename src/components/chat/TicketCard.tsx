@@ -1,12 +1,13 @@
-import { FileText, Calendar, Building2, ExternalLink } from "lucide-react";
+import { FileText, Calendar, Building2, Hourglass } from "lucide-react";
 import { StatusBadge, TicketStatus } from "./StatusBadge";
 
 interface TicketData {
   numero: string;
+  asunto: string;
   estado: TicketStatus;
+  fechaCreacion: string;
+  organismo: string;
   descripcion: string;
-  ultimaActualizacion: string;
-  mesaTrabajo: string;
 }
 
 interface TicketCardProps {
@@ -15,44 +16,61 @@ interface TicketCardProps {
 
 export function TicketCard({ ticket }: TicketCardProps) {
   return (
-    <div className="ticket-card p-4 space-y-4 animate-fade-in shadow-institutional">
-      {/* Header con número y estado */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <FileText className="w-5 h-5 text-secondary" />
-          <div>
-            <p className="text-xs text-muted-foreground">Número de ticket</p>
-            <p className="font-semibold text-foreground">{ticket.numero}</p>
+    <div className="ticket-card overflow-hidden animate-fade-in shadow-institutional">
+      {/* Header con número de solicitud */}
+      <div className="flex items-center gap-2 px-5 py-3 border-b border-border bg-muted/30">
+        <FileText className="w-5 h-5 text-secondary" />
+        <span className="font-semibold text-secondary">
+          Solicitud #{ticket.numero}
+        </span>
+      </div>
+
+      {/* Contenido */}
+      <div className="px-5 py-4 space-y-4">
+        {/* Asunto */}
+        <div>
+          <p className="text-xs text-muted-foreground mb-1">Asunto</p>
+          <p className="font-semibold text-foreground text-base">
+            {ticket.asunto}
+          </p>
+        </div>
+
+        {/* Estado */}
+        <div>
+          <p className="text-xs text-muted-foreground mb-1.5">Estado</p>
+          <div className="flex items-center gap-2">
+            <Hourglass className="w-4 h-4 text-status-revision" />
+            <StatusBadge status={ticket.estado} />
           </div>
         </div>
-        <StatusBadge status={ticket.estado} />
-      </div>
 
-      {/* Descripción */}
-      <div className="pl-7">
-        <p className="text-sm text-foreground leading-relaxed">
-          {ticket.descripcion}
-        </p>
-      </div>
-
-      {/* Metadata */}
-      <div className="pl-7 flex flex-wrap gap-4 text-sm">
-        <div className="flex items-center gap-1.5 text-muted-foreground">
-          <Calendar className="w-4 h-4" />
-          <span>Última actualización: {ticket.ultimaActualizacion}</span>
+        {/* Fecha de creación */}
+        <div>
+          <p className="text-xs text-muted-foreground mb-1">Fecha de creación</p>
+          <div className="flex items-center gap-2 text-foreground">
+            <Calendar className="w-4 h-4 text-muted-foreground" />
+            <span>{ticket.fechaCreacion}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-1.5 text-muted-foreground">
-          <Building2 className="w-4 h-4" />
-          <span>{ticket.mesaTrabajo}</span>
-        </div>
-      </div>
 
-      {/* Enlace de documentación */}
-      <div className="pl-7 pt-2 border-t border-border">
-        <button className="inline-flex items-center gap-1.5 text-sm text-secondary hover:text-secondary/80 transition-colors font-medium">
-          <ExternalLink className="w-4 h-4" />
-          Ver documentación relacionada
-        </button>
+        {/* Organismo */}
+        <div>
+          <p className="text-xs text-muted-foreground mb-1">Organismo</p>
+          <div className="flex items-center gap-2 text-foreground">
+            <Building2 className="w-4 h-4 text-muted-foreground" />
+            <span>{ticket.organismo}</span>
+          </div>
+        </div>
+
+        {/* Descripción */}
+        <div>
+          <p className="text-xs text-muted-foreground mb-1.5">Descripción</p>
+          <div className="bg-muted/50 border-l-4 border-secondary/40 px-4 py-3 rounded-r-md">
+            <p className="text-sm text-foreground leading-relaxed">
+              {ticket.descripcion}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

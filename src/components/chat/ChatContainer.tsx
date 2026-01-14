@@ -4,10 +4,11 @@ import { TicketStatus } from "./StatusBadge";
 
 interface TicketData {
   numero: string;
+  asunto: string;
   estado: TicketStatus;
+  fechaCreacion: string;
+  organismo: string;
   descripcion: string;
-  ultimaActualizacion: string;
-  mesaTrabajo: string;
 }
 
 interface Message {

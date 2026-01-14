@@ -6,10 +6,11 @@ import { TicketStatus } from "@/components/chat/StatusBadge";
 
 interface TicketData {
   numero: string;
+  asunto: string;
   estado: TicketStatus;
+  fechaCreacion: string;
+  organismo: string;
   descripcion: string;
-  ultimaActualizacion: string;
-  mesaTrabajo: string;
 }
 
 interface Message {
@@ -22,47 +23,59 @@ interface Message {
 
 // Datos de ejemplo para la maqueta
 const mockTickets: Record<string, TicketData> = {
-  "12345678": {
-    numero: "12345678",
-    estado: "encurso",
-    descripcion: "La solicitud se encuentra en tratamiento por el área responsable.",
-    ultimaActualizacion: "10/04/2024",
-    mesaTrabajo: "Gestión Administrativa",
-  },
-  "11111111": {
-    numero: "11111111",
-    estado: "iniciado",
-    descripcion: "La solicitud ha sido registrada y está pendiente de asignación.",
-    ultimaActualizacion: "08/04/2024",
-    mesaTrabajo: "Mesa de Entrada",
-  },
-  "22222222": {
-    numero: "22222222",
+  "2025-001234": {
+    numero: "2025-001234",
+    asunto: "Ampliación de Red Cloacal - Zona Sur",
     estado: "revision",
-    descripcion: "La documentación presentada está siendo revisada por el equipo técnico.",
-    ultimaActualizacion: "09/04/2024",
-    mesaTrabajo: "Control Documental",
+    fechaCreacion: "10/01/2026",
+    organismo: "Ministerio de Obras Públicas",
+    descripcion:
+      "Solicitud de autorización para obra de ampliación de red cloacal en zona sur de la ciudad. Incluye planos técnicos, estudios de impacto ambiental y presupuesto estimado.",
   },
-  "33333333": {
-    numero: "33333333",
+  "2025-001100": {
+    numero: "2025-001100",
+    asunto: "Habilitación Comercial - Local Gastronómico",
+    estado: "encurso",
+    fechaCreacion: "05/01/2026",
+    organismo: "Secretaría de Comercio",
+    descripcion:
+      "Trámite de habilitación para apertura de local gastronómico en zona céntrica. Documentación completa presentada.",
+  },
+  "2024-009876": {
+    numero: "2024-009876",
+    asunto: "Permiso de Construcción - Vivienda Unifamiliar",
     estado: "pendiente",
-    descripcion: "Se requiere documentación adicional para continuar con el trámite.",
-    ultimaActualizacion: "07/04/2024",
-    mesaTrabajo: "Gestión Administrativa",
+    fechaCreacion: "15/12/2024",
+    organismo: "Dirección de Obras Particulares",
+    descripcion:
+      "Se requiere presentación de plano de instalación eléctrica aprobado por ente regulador.",
   },
-  "44444444": {
-    numero: "44444444",
+  "2024-008500": {
+    numero: "2024-008500",
+    asunto: "Subsidio Educativo - Nivel Superior",
     estado: "finalizado",
-    descripcion: "El trámite ha sido completado satisfactoriamente.",
-    ultimaActualizacion: "05/04/2024",
-    mesaTrabajo: "Resoluciones",
+    fechaCreacion: "01/11/2024",
+    organismo: "Ministerio de Educación",
+    descripcion:
+      "Solicitud de subsidio para estudiantes de nivel superior. Beneficio otorgado satisfactoriamente.",
   },
-  "55555555": {
-    numero: "55555555",
+  "2024-007200": {
+    numero: "2024-007200",
+    asunto: "Reclamo por Bache en Vía Pública",
     estado: "sinresolucion",
-    descripcion: "El trámite no pudo ser resuelto debido a inconsistencias en la documentación.",
-    ultimaActualizacion: "03/04/2024",
-    mesaTrabajo: "Gestión Administrativa",
+    fechaCreacion: "20/10/2024",
+    organismo: "Secretaría de Obras Públicas",
+    descripcion:
+      "El reclamo no pudo ser atendido por falta de recursos asignados al área correspondiente.",
+  },
+  "2025-000050": {
+    numero: "2025-000050",
+    asunto: "Registro de Marca Comercial",
+    estado: "iniciado",
+    fechaCreacion: "02/01/2026",
+    organismo: "Registro de Propiedad Industrial",
+    descripcion:
+      "Solicitud de registro de marca comercial para emprendimiento local. Pendiente de asignación.",
   },
 };
 
@@ -76,13 +89,13 @@ const initialMessages: Message[] = [
   {
     id: "2",
     role: "user",
-    content: "12345678",
+    content: "2025-001234",
   },
   {
     id: "3",
     role: "assistant",
     content: "Encontré la siguiente información para el ticket consultado:",
-    ticket: mockTickets["12345678"],
+    ticket: mockTickets["2025-001234"],
   },
   {
     id: "4",
