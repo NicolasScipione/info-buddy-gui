@@ -21,7 +21,7 @@ export function ChatHeader() {
         <img 
           src={logoGobierno} 
           alt="Gobierno de la Provincia de Córdoba" 
-          className="h-12 object-contain"
+          className="h-12 object-contain -mr-4"
         />
       </div>
     </header>
